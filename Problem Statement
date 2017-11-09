@@ -1,0 +1,26 @@
+In this code, spam or ham SMS messages are identified using the naive Bayes model. SMS dataset needs to be downloaded from : http://archive.ics.uci.edu/ml/datasets/SMS+Spam+Collection.
+Python users: scikit-learn is not allowed.
+Consider an SMS message as a (case-insensitive) sequence of words (X1;....;XT ). Ignore all other punctuation.
+Under the naive Bayes assumption, the probability of the words in each message factors as:
+P(x1:T|y) = PI (from t=1 to t=T)P(xi|y).
+When estimated from dataset D with pseudo-count prior of a, the model parameters are:
+P'(xi|y) =(CountD(xi; y) + a)/CountD(y) + Na
+where: CountD(xi; y) and CountD(y) are the number of occurances of word xi in spam/ham messages y (from our sample D); and the number of words for label spam/ham words y (from our sample D) respectively;
+and N is the total number of dictionary words (including words not seen in D). Let us use N = 20; 000 and a= 0:1 in our experiments. Note that the classes are heavily imbalanced. The number of spam messages is 747, while the number of ham
+messages is 4827. If a simple classifier predicts that all messages are ham, it will get around 86% accuracy. In this case, accuracy is not a good measurement of the classifier's performance.
+Instead of using accuracy, we can use confusion matrix to see the performance of our model. Below is the
+explanation of confusion matrix:
+                                                     True condition
+                                                    Positive       Negative
+Predicted Condition              Positive        True positive  False positive
+Predicted Condition              Negative        False negative True negative
+
+Other important performance measurements are precision, recall, and F-score, defined as:
+precision = (true positive)/(true positive + false positive)----(3)
+recall =(true positive)/(true positive + false negative)--------(4)
+F-score = 2(precision * recall)/(precision + recall)------------(5)
+(a) Randomly split the messages into a training set D1 (80% of messages) and a testing set D2 (20% of messages). Calculate the testing accuracy, confusion matrix, precision, recall, and F-score of the Naive Bayes classifier in determining whether a message is spam or ham. Submit your source code.
+Note: Let's assume that spam is the positive class.
+(b) How does the change of 'a' effect the classifier performance? Using random split above, evaluate the training and test accuracy and F-score under different selections of 'a'. The selection of 'a' values are 2^i where i=-5,.....,0.
+Create two plots, the first plot is for the accuracy measure and the second plot is for F-score. In each plot, x-axis represents i, and y-axis represents the performance measure
+(accuracy/F-score). Each plot contains two line chart, a line chart describing training accuracy/F-score measure, the other line chart is for test accuracy/F-score. 
